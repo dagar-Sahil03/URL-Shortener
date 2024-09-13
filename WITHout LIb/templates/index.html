@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy URL Shortener</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Basic CSS for fancy design -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+            color: #666;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #4facfe;
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #00f2fe;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .result, .error {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .result a {
+            color: #4facfe;
+            text-decoration: none;
+        }
+
+        .result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fancy URL Shortener</h1>
+        <p>Transform your long URLs into short, sleek links in seconds!</p>
+        <form action="/shorten" method="POST">
+            <input type="text" id="url" name="url" placeholder="Enter a long URL" required>
+            <button type="submit">Shorten URL</button>
+        </form>
+        {% if short_url %}
+        <div class="result">
+            <p>Shortened URL: <a href="{{ short_url }}" target="_blank">{{ short_url }}</a></p>
+        </div>
+        {% endif %}
+        {% if original_url %}
+        <div class="result">
+            <p>Original URL: <a href="{{ original_url }}" target="_blank">{{ original_url }}</a></p>
+        </div>
+        {% endif %}
+        {% if error %}
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+        <footer>
+            <p>Powered by <strong>Your Service</strong></p>
+        </footer>
+    </div>
+</body>
+</html>
